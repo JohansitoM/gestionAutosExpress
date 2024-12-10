@@ -4,5 +4,6 @@ const route = express.Router()
 
 route.post('/clientes', clienteController.registrarCliente)
 route.get('/clientes', clienteController.mostrarClientes)
+route.post('/login', clienteController.login)
 
 module.exports = route
