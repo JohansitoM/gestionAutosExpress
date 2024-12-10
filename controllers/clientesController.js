@@ -13,6 +13,15 @@ const crearCliente = async(req, res) => {
     }
 }
 
+const mostrarClientes = async(req, res) => {
+    try {
+        const clientes = await Cliente.findAll()
+        res.json(clientes)
+    } catch(e) {
+        res.status(500).json({error: e.message})
+    }
+}
+
 const registrarCliente = async (req, res) => {
     try {
         const { nombre, correo, numeroLicencia, password } = req.body
@@ -25,4 +34,4 @@ const registrarCliente = async (req, res) => {
         res.status(500).json({ error: "Error al registrar el cliente" })
     }
 }
-module.exports = { crearCliente }
+module.exports = { crearCliente, mostrarClientes, registrarCliente }
