@@ -1,4 +1,5 @@
 const { Cliente } = require('../models')
+const bcrypt = require('bcrypt')
 
 const crearCliente = async(req, res) => {
     try {
@@ -18,6 +19,7 @@ const mostrarClientes = async(req, res) => {
         const clientes = await Cliente.findAll()
         res.json(clientes)
     } catch(e) {
+        console.log(e)
         res.status(500).json({error: e.message})
     }
 }
@@ -28,7 +30,7 @@ const registrarCliente = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10)
         const nuevoCliente = await Cliente.create({ nombre, correo, numeroLicencia, password: hashedPassword})
 
-        res.status
+        res.status(201).json({ cliente: nuevoCliente })
     } catch (error) {
         console.log("Error al registrar el cliente: ", error)
         res.status(500).json({ error: "Error al registrar el cliente" })
