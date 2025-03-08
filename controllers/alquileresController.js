@@ -1,29 +1,33 @@
-const { Alquiler } = require('../models')
-const AutoController = require('../controllers/autosController')
+const { Alquiler } = require("../models");
+const AutoController = require("../controllers/autosController");
 
-const crearAlquiler = async(req, res) => {
-    try {
-        const { fechaInicio, fechaFin, idCliente, idAuto } = req.body
+const crearAlquiler = async (req, res) => {
+  try {
+    const { fechaInicio, fechaFin, idCliente, idAuto } = req.body;
 
-        const nuevoAlquiler = await Alquiler.create({ fechaInicio, fechaFin, idCliente, idAuto })
+    const nuevoAlquiler = await Alquiler.create({
+      fechaInicio,
+      fechaFin,
+      idCliente,
+      idAuto,
+    });
 
-        await AutoController.cambiarEstado( idAuto, "No disponible")
+    await AutoController.cambiarEstado(idAuto, 0);
 
-        res.json(nuevoAlquiler) 
-    } catch(e) {
-        res.status(500).json({error: e.message})
-    }
-}
+    res.json(nuevoAlquiler);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
 
-const mostrarAlquileres = async(req, res) => {
-    try {
-        const historialAlquilares = await Alquiler.findAll()
+const mostrarAlquileres = async (req, res) => {
+  try {
+    const historialAlquilares = await Alquiler.findAll();
 
-        res.json(historialAlquilares)
-    } catch(e) {
-        res.status(500).json({ error: e })
-    }
-} 
+    res.json(historialAlquilares);
+  } catch (e) {
+    res.status(500).json({ error: e });
+  }
+};
 
-
-module.exports = { crearAlquiler, mostrarAlquileres }
+module.exports = { crearAlquiler, mostrarAlquileres };
