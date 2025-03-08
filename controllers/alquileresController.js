@@ -12,7 +12,7 @@ const crearAlquiler = async (req, res) => {
       autoId,
     });
 
-    await AutoController.cambiarEstado(idAuto, 0);
+    await AutoController.cambiarEstado(autoId, 0);
 
     res.json(nuevoAlquiler);
   } catch (e) {
