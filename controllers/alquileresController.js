@@ -8,8 +8,8 @@ const crearAlquiler = async (req, res) => {
     const nuevoAlquiler = await Alquiler.create({
       fechaInicio,
       fechaFin,
-      idCliente,
-      idAuto,
+      clienteId,
+      autoId,
     });
 
     await AutoController.cambiarEstado(idAuto, 0);
