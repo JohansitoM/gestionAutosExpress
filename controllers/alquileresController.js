@@ -22,9 +22,9 @@ const crearAlquiler = async (req, res) => {
 
 const mostrarAlquileres = async (req, res) => {
   try {
-    const historialAlquilares = await Alquiler.findAll();
+    const historialAlquileres = await Alquiler.findAll();
 
-    res.json(historialAlquilares);
+    res.json(historialAlquileres);
   } catch (e) {
     res.status(500).json({ error: e });
   }
