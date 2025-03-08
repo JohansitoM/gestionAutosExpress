@@ -23,11 +23,20 @@ const mostrarAutosDisponibles = async (req, res) => {
   try {
     const autosDisponibles = await Auto.findAll({
       where: {
-        estado: "Disponible",
+        estado: 1,
       },
     });
 
     res.json(autosDisponibles);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
+
+const mostrarAutos = async (req, res) => {
+  try {
+    const autos = await Auto.findAll();
+    res.json(autos);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -46,4 +55,9 @@ const cambiarEstado = async (idAuto, estado) => {
   }
 };
 
-module.exports = { crearAuto, mostrarAutosDisponibles, cambiarEstado };
+module.exports = {
+  crearAuto,
+  mostrarAutosDisponibles,
+  cambiarEstado,
+  mostrarAutos,
+};
