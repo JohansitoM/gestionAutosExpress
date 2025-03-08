@@ -3,7 +3,7 @@ const AutoController = require("../controllers/autosController");
 
 const crearAlquiler = async (req, res) => {
   try {
-    const { fechaInicio, fechaFin, idCliente, idAuto } = req.body;
+    const { fechaInicio, fechaFin, clienteId, autoId } = req.body;
 
     const nuevoAlquiler = await Alquiler.create({
       fechaInicio,
