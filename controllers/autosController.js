@@ -1,6 +1,7 @@
 const { Auto } = require("../models");
 
 const crearAuto = async (req, res) => {
+  console.log(req.body);
   try {
     const { marca, modelo, imageUrl, valorAlquiler, year, estado } = req.body;
     const nuevoAuto = await Auto.create({
